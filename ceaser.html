@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ceaser Cipher</title>
+  </head>
+  <body>
+    <form id="form">
+      <div class="block-1">
+        <div class="block_cip">
+          <label>Ceaser Cipher:</label>
+        </div>
+        <div class="data-cip">
+          <input
+            type="text"
+            placeholder="enter cipher text"
+            id="get_cipher"
+            required
+          />
+        </div>
+
+        <div class="get_click">
+          <button id="submit">click</button>
+        </div>
+      </div>
+    </form>
+    <div class="decrypt">
+      <p>the encrypted text is:</p>
+
+      <p id="decrypt"></p>
+    </div>
+    <div class="abs">
+      <p>copy paste data to verify Ceaser-cipher</p>
+      <form id="form1">
+        <input type="text" placeholder="decrypt text" id="dec_data" />
+        <button id="submit">click</button>
+      </form>
+      <p id="check"></p>
+    </div>
+    <script type="module" src="./js/script.js"></script>
+  </body>
+</html>

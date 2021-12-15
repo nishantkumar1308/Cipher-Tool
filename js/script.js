@@ -1,14 +1,17 @@
+//--------------------!!IMPORTED FOLDERS---------------
 import { ceaeser } from "./ceaser_cipher.js";
 import { ceaeser_decrypt } from "./ceaser_decrypt.js";
-
+//...................................................
 const form = document.getElementById("form");
 const form1 = document.getElementById("form1");
 const ceaser = document.getElementById("get_cipher");
 const decrypt = document.getElementById("decrypt");
 //const shift = document.getElementById("shift_cipher");
-
 const get_text = document.getElementById("dec_data");
 const return_val = document.getElementById("check");
+// --------------------------!!!Ceaser cipher Variables-------------------//
+
+//---------------------------------------------------
 
 form.addEventListener("submit", (e) => {
   //console.log(e);
@@ -35,3 +38,5 @@ function decryptText() {
   console.log(value_check);
   return_val.innerText = ceaeser_decrypt(value_check);
 }
+
+//-------------Hill cipher-----------------//
