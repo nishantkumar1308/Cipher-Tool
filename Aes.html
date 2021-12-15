@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aes encryption technique</title>
+  </head>
+  <body>
+    <h1>Aes Encryption technique</h1>
+    <form id="ff1">
+      <div class="d1">
+        <label> Enter plain text; </label>
+      </div>
+      <input type="text" id="aes_plain" required />
+      <br />
+
+      <label>Enter 16 digit which help to create 128 bit encryption key</label>
+      <input type="number" id="ip1" />
+      <input type="number" id="ip2" />
+      <input type="number" id="ip3" />
+      <input type="number" id="ip4" />
+      <input type="number" id="ip5" />
+      <input type="number" id="ip6" />
+      <input type="number" id="ip7" />
+      <input type="number" id="ip8" />
+      <input type="number" id="ip9" />
+      <input type="number" id="ip10" />
+      <input type="number" id="ip11" />
+      <input type="number" id="ip12" />
+      <input type="number" id="ip13" />
+      <input type="number" id="ip14" />
+      <input type="number" id="ip15" />
+      <input type="number" id="ip16" />
+
+      <button id="Submit">submit</button>
+    </form>
+    <p id="encrypt_text"></p>
+    <form id="ff2">
+      <label>Enter decrypted text: </label>
+      <input type="text" id="dect_text" required />
+      <button id="submit">Decrypt</button>
+    </form>
+    <p id="decrypt_text"></p>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.rawgit.com/ricmoo/aes-js/e27b99df/index.js"
+    ></script>
+    <script>
+      var form = document.getElementById("ff1");
+      var plain_text = document.getElementById("aes_plain");
+      var encrypted_text = document.getElementById("encrypt_text");
+
+      var ff2 = document.getElementById("ff2");
+      var dect_text = document.getElementById("dect_text");
+      var get_plain = document.getElementById("decrypt_text");
+      var ip1 = document.getElementById("ip1");
+      var ip2 = document.getElementById("ip2");
+      var ip3 = document.getElementById("ip3");
+      var ip4 = document.getElementById("ip4");
+      var ip5 = document.getElementById("ip5");
+      var ip6 = document.getElementById("ip6");
+      var ip7 = document.getElementById("ip7");
+      var ip8 = document.getElementById("ip8");
+      var ip9 = document.getElementById("ip9");
+      var ip10 = document.getElementById("ip10");
+      var ip11 = document.getElementById("ip11");
+      var ip12 = document.getElementById("ip12");
+      var ip13 = document.getElementById("ip13");
+      var ip14 = document.getElementById("ip14");
+      var ip15 = document.getElementById("ip15");
+
+      var ip16 = document.getElementById("ip6");
+
+      var x;
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        checkinput();
+      });
+
+      function checkinput() {
+        // var aesjs = require("aes-js");
+
+        // An example 128-bit key (16 bytes * 8 bits/byte = 128 bits)
+        var key = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+
+        // Convert text to bytes
+        var get_plain = plain_text.value.trim();
+        var text = get_plain;
+        // console.log(text);
+        var textBytes = aesjs.utils.utf8.toBytes(text);
+
+        // The counter is optional, and if omitted will begin at 1
+        var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+        var encryptedBytes = aesCtr.encrypt(textBytes);
+
+        // To print or store the binary data, you may convert it to hex
+        var encryptedHex = aesjs.utils.hex.fromBytes(encryptedBytes);
+        console.log(encryptedHex);
+        encrypted_text.innerHTML = encryptedHex;
+        // console.log("/////////////");
+        // "a338eda3874ed884b6199150d36f49988c90f5c47fe7792b0cf8c7f77eeffd87
+        //  ea145b73e82aefcf2076f881c88879e4e25b1d7b24ba2788"
+
+        // When ready to decrypt the hex string, convert it back to bytes
+        var encryptedBytes = aesjs.utils.hex.toBytes(encryptedHex);
+
+        // The counter mode of operation maintains internal state, so to
+        // decrypt a new instance must be instantiated.
+        var aesCtr = new aesjs.ModeOfOperation.ctr(key, new aesjs.Counter(5));
+        var decryptedBytes = aesCtr.decrypt(encryptedBytes);
+
+        // Convert our bytes back into text
+        var decryptedText = aesjs.utils.utf8.fromBytes(decryptedBytes);
+        x = decryptedText;
+        //  console.log(decryptedText);
+      }
+
+      ff2.addEventListener("submit", (e) => {
+        e.preventDefault();
+        fillvalue();
+      });
+
+      function fillvalue() {
+        get_plain.innerHTML = x;
+      }
+
+      // "Text may be any length you wish, no padding is required."
+    </script>
+  </body>
+</html>
